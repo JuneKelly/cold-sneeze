@@ -8,9 +8,10 @@ defmodule Cold.Router do
 
   get "/" do
     Logger.info "Render homepage"
+    now = DateTime.utc_now() |> DateTime.to_iso8601()
     conn
     |> put_resp_content_type("text/html")
-    |> send_resp(200, Templates.homepage)
+    |> send_resp(200, Templates.homepage(%{timestamp: now}))
   end
 
   match _ do

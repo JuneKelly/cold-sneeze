@@ -1,13 +1,16 @@
 defmodule Cold.Templates do
 
-  def homepage do
-    layout([
-      [:h1, "Hello, I have a cold"],
-      [:p,
-       "This is a demo of ",
-       [:a, %{href: "https://github.com/ShaneKilkelly/sneeze", target: "_blank"}, "sneeze"],
-       " the template data->html renderer."]
-    ])
+  def homepage(%{timestamp: timestamp}) do
+    layout(
+      [
+        [:h1, "Hello, I have a cold"],
+        [:p,
+         "This is a demo of ",
+         [:a, %{href: "https://github.com/ShaneKilkelly/sneeze", target: "_blank"}, "sneeze"],
+          " the template data->html renderer."],
+        [:p,
+         "The current time is #{timestamp}"]
+      ])
   end
 
   def layout(content_block) do
